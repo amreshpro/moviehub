@@ -1,18 +1,53 @@
-import { useEffect, useState } from 'react';
-import fetchDataFromAPI from './utils/fetchDataFromAPI';
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './components/Home';
+import MovieList from './components/MovieList';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Error from './components/Error';
+import TVList from './components/TVList';
+import Login from './components/Login';
+import DetailsOfMovie from './components/DetailsOfMovie';
 
-export default function App() {
-    const [movieData, setMovieData] = useState(false);
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        errorElement: <Error />,
+        children: [
+            {
+                path: '/',
+                element: <Home />,
+            },
+            {
+                path: '/movie',
+                element: <MovieList />,
+            },
+            {
+                path: '/movie/:movieId',
+                element: <DetailsOfMovie />,
+            },
+            {
+                path: '/tv',
+                element: <TVList />,
+            },
+            {
+                path: '/login',
+                element: <Login />,
+            },
+        ],
+    },
+]);
 
-    useEffect(() => {
-        const data = fetchDataFromAPI('/discover/movie');
-        setMovieData(data);
-    }, []);
-    console.log(movieData);
-
+function App() {
     return (
-        <div className="bg-slate-900 text-white">
-            <h1>Hello </h1>
+        <div>
+            <Navbar />
+            <Outlet />
+            <Footer />
         </div>
     );
+}
+
+export default function AppLayout() {
+    return <RouterProvider router={router} />;
 }
