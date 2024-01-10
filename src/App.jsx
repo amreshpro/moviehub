@@ -7,6 +7,7 @@ import Error from './components/Error';
 import TVList from './components/TVList';
 import Login from './components/Login';
 import DetailsOfMovie from './components/DetailsOfMovie';
+import SearchList from './components/SearchList';
 
 const router = createBrowserRouter([
     {
@@ -23,12 +24,16 @@ const router = createBrowserRouter([
                 element: <MovieList />,
             },
             {
-                path: '/movie/:movieId',
-                element: <DetailsOfMovie />,
-            },
-            {
                 path: '/tv',
                 element: <TVList />,
+            },
+            {
+                path:"/search",
+                element:<SearchList/>
+            },
+            {
+                path: '/movie/:movieId',
+                element: <DetailsOfMovie />,
             },
             {
                 path: '/login',

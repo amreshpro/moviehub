@@ -1,4 +1,4 @@
-import { Link, useNavigate,  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
 import { IoSearchOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
@@ -8,12 +8,11 @@ import { useState } from 'react';
 export default function Navbar() {
     const [isMobileMenu, setIsMobileMenu] = useState(false);
 
-      const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const logoutHandler=()=>{
-        
-    navigate("/login")
-       }
+    const logoutHandler = () => {
+        navigate('/login');
+    };
 
     return (
         <>
@@ -34,12 +33,15 @@ export default function Navbar() {
                 <div className="nav-container flex gap-4 sm:hidden ">
                     <Link to="movie">Movie</Link>
                     <Link to="/tv">TV/Series</Link>
-                    <button onClick={()=>logoutHandler()}>
+                    <button onClick={() => logoutHandler()}>
                         <FiLogOut />
                     </button>
                 </div>
                 {/* mobile menu btn */}
-                <button onClick={() => setIsMobileMenu(!isMobileMenu)} className=' hidden sm:flex text-2xl'>
+                <button
+                    onClick={() => setIsMobileMenu(!isMobileMenu)}
+                    className=" hidden sm:flex text-2xl"
+                >
                     {!isMobileMenu ? <FiMenu /> : <IoMdClose />}
                 </button>
             </nav>
@@ -47,12 +49,13 @@ export default function Navbar() {
             {/* mobile menu */}
             {isMobileMenu && (
                 <div className="mobile-menu-content relative  ease-in  mx-2 p-4 mt-4   w-fit   hidden sm:flex sm:flex-col bg-slate-950 text-white">
-                <button onClick={() => setIsMobileMenu(!isMobileMenu)} className='text-3xl mb-1 absolute  bg-[#e50914] top-0  right-0'
-              
-                >
-                   <IoMdClose />
-                </button>
-                 
+                    <button
+                        onClick={() => setIsMobileMenu(!isMobileMenu)}
+                        className="text-3xl mb-1 absolute  bg-[#e50914] top-0  right-0"
+                    >
+                        <IoMdClose />
+                    </button>
+
                     <div className="search flex  mt-6 w-[82vw] ">
                         <input
                             type="text"
@@ -66,8 +69,8 @@ export default function Navbar() {
                     <div className="nav-container flex flex-col gap-2 mt-2  ">
                         <Link to="movie">Movie</Link>
                         <Link to="/tv">TV/Series</Link>
-                        <button onClick={()=>logoutHandler()}>
-                            <FiLogOut  />
+                        <button onClick={() => logoutHandler()}>
+                            <FiLogOut />
                         </button>
                     </div>
                 </div>

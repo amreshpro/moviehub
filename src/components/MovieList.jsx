@@ -5,10 +5,10 @@ import MovieCard from './MovieCard';
 export default function MovieList() {
     const { data, loading } = useFetch('/discover/movie');
     if (loading) return 'Loading....';
-    console.log(data)
+    console.log(data);
     return (
         <div>
-            <div className="filter">
+            <div className=" my-4 filter flex gap-2 justify-between px-4 sm:px-2">
                 <h1 className="text-2xl">Explore Movies</h1>
                 <div className="filer-item flex gap-3 flex-wrap">
                     <button>Filer-1</button>
@@ -17,9 +17,11 @@ export default function MovieList() {
             </div>
             <div className="movie-container flex justify-center gap-6 flex-wrap">
                 {data?.data?.results?.map((movie) => {
-                    return (<Link to={`/movie/${movie.id}`} key={movie.id}> 
-                     <MovieCard {...movie} />
-                    </Link>)
+                    return (
+                        <Link to={`/movie/${movie.id}`} key={movie.id}>
+                            <MovieCard {...movie} />
+                        </Link>
+                    );
                 })}
             </div>
         </div>
