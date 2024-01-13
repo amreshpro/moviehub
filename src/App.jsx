@@ -1,18 +1,26 @@
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
-import MovieList from './components/MovieList';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Error from './components/Error';
-import TVList from './components/TVList';
 import Login from './components/Login';
-import DetailsOfMovie from './components/DetailsOfMovie';
 import SearchList from './components/SearchList';
+import { Suspense, lazy } from 'react';
+
+// lazy load components
+const MovieList = lazy(() => import('./components/MovieList'));
+const TVList = lazy(() => import('./components/TVList'));
+const DetailsOfMovie = lazy(() => import('./components/DetailsOfMovie'));
+const DetailsOfTV = lazy(() => import('./components/DetailOfTV'));
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />,
+        element: (
+            <Suspense fallback={'Loading...'}>
+                <App />
+            </Suspense>
+        ),
         errorElement: <Error />,
         children: [
             {
@@ -28,12 +36,16 @@ const router = createBrowserRouter([
                 element: <TVList />,
             },
             {
-                path:"/search",
-                element:<SearchList/>
+                path: '/search',
+                element: <SearchList />,
             },
             {
                 path: '/movie/:movieId',
                 element: <DetailsOfMovie />,
+            },
+            {
+                path: '/tv/:tvId',
+                element: <DetailsOfTV />,
             },
             {
                 path: '/login',

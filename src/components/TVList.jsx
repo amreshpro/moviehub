@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import useFetch from '../utils/useFetch';
-import MovieCard from './MovieCard';
+import TVCard from './TVCard';
 
-export default function MovieList() {
+
+export default function TVList() {
     const { data:tvDetails, loading:tvLoading } = useFetch('/discover/tv');
     if (tvLoading) return 'Loading....';
     console.log(tvDetails);
@@ -17,9 +18,10 @@ export default function MovieList() {
             </div>
             <div className="tv-container flex justify-center gap-6 flex-wrap">
                 {tvDetails?.data?.results?.map((tv) => {
+                    console.log(tv)
                     return (
                         <Link to={`/tv/${tv.id}`} key={tv.id}>
-                            <MovieCard {...tv} />
+                            <TVCard {...tv} />
                         </Link>
                     );
                 })}
