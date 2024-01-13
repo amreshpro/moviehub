@@ -22,9 +22,7 @@ const months = [
 
 export default function DetailsOfTV() {
     const { tvId } = useParams();
-    const { data: tvDetails, loading: loadingTvData } = useFetch(
-        `/tv/${tvId}`,
-    );
+    const { data: tvDetails, loading: loadingTvData } = useFetch(`/tv/${tvId}`);
 
     const { data: creditDetails, loading: loadingCreditData } = useFetch(
         `/tv/${tvId}/credits`,

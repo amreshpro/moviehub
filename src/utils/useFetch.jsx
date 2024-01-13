@@ -6,7 +6,7 @@ const useFetch = (url) => {
     const [data, setdata] = useState(null);
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState('');
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const options = {
@@ -31,7 +31,7 @@ const useFetch = (url) => {
         });
     }, [page, url]);
 
-    return { data, loading, error,page,setPage };
+    return { data, loading, error, page, setPage };
 };
 
 export default useFetch;

@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-:root{
+:root {
     scroll-behavior: smooth;
 }
 * {

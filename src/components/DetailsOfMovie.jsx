@@ -24,7 +24,7 @@ const months = [
 
 export default function DetailsOfMovie() {
     const { movieId } = useParams();
-const [videoKey, setVideoKey] = useState(null)
+    const [videoKey, setVideoKey] = useState(null);
 
     const { data: movieDetails, loading: loadingMovieData } = useFetch(
         `/movie/${movieId}`,
@@ -119,9 +119,9 @@ const [videoKey, setVideoKey] = useState(null)
             {/* cast */}
             <div className="casting mt-4 px-2  w-full">
                 <h1 className="text-2xl mb-4 px-2 ">Top Cast</h1>
-                <div className="cast flex sm:justify-center gap-4  flex-wrap">
-                    {casts?.map((cast, index) => {
-                        if (index <= 4)
+                <div className="cast flex sm:justify-center gap-8 sm:gap-4  flex-wrap">
+                    {casts?.slice(0,5).map((cast, index) => {
+                        
                             return <CastProfile key={cast.id} {...cast} />;
                     })}
                 </div>
@@ -131,13 +131,10 @@ const [videoKey, setVideoKey] = useState(null)
                 <h1 className="text-2xl mb-4 px-2 ">Official Videos</h1>
 
                 <div className="official-videos flex gap-4 flex-wrap">
-                    {movieVideos?.data?.results.map((video,i) => {
-              
-                        return (
-                          
-                                <VideoBox key={i} {...video} />
-                           
-                        );
+                    {movieVideos?.data?.results.slice(0,5).map((video, i) => {
+                        console.log(video)
+                        const videoKey = video.key
+                        return <VideoBox key={i} {...video} videoKey={videoKey} />;
                     })}
                 </div>
             </div>

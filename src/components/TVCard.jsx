@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { IMAGE_BASE_URL } from '../constants';
-import {TVGenres} from '../constants/genres';
+import { TVGenres } from '../constants/genres';
 
 export default function TVCard(props) {
-    const { original_title, title, poster_path, genre_ids,name } = props;
+    const { original_title, title, poster_path, genre_ids, name } = props;
 
     return (
         <div className="sticky w-60  bg-[#e50914] text-white rounded-xl overflow-hidden">
@@ -13,7 +13,9 @@ export default function TVCard(props) {
                 className=" h-72 w-full"
             />
             <div className="content  px-2 py-2">
-                <h1 className="font-bold ">{original_title?? title??name}</h1>
+                <h1 className="font-bold ">
+                    {original_title ?? title ?? name}
+                </h1>
                 <div className="genres-list absolute top-8 right-2">
                     {genre_ids?.map((_, i) => {
                         if (genre_ids[i] === TVGenres[i].id)
