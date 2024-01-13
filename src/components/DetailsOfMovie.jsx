@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../utils/useFetch';
 import { IMAGE_BASE_URL } from '../constants';
 import CastProfile from './CastProfile';
+import VideoBox from './VideoBox';
+import { useState } from 'react';
 
 // for month
 const months = [
@@ -22,6 +24,8 @@ const months = [
 
 export default function DetailsOfMovie() {
     const { movieId } = useParams();
+const [videoKey, setVideoKey] = useState(null)
+
     const { data: movieDetails, loading: loadingMovieData } = useFetch(
         `/movie/${movieId}`,
     );
@@ -29,10 +33,14 @@ export default function DetailsOfMovie() {
     const { data: creditDetails, loading: loadingCreditData } = useFetch(
         `/movie/${movieId}/credits`,
     );
-
+    const { data: movieVideos, loading: movieVideosLoading } = useFetch(
+        `/movie/${movieId}/videos`,
+    );
     console.log(movieDetails);
     console.log(creditDetails);
-    if (loadingMovieData || loadingCreditData) return 'Loading....';
+    console.log(movieVideos);
+    if (loadingMovieData || loadingCreditData || movieVideosLoading)
+        return 'Loading....';
     const {
         poster_path,
         title,
@@ -119,14 +127,20 @@ export default function DetailsOfMovie() {
                 </div>
             </div>
 
-            {/* <div className="official-videos">
-<h1 className='text-2xl mb-4 px-2 '>Official Videos</h1>
+            <div className="official-videos">
+                <h1 className="text-2xl mb-4 px-2 ">Official Videos</h1>
 
-<div className="official-videos flex gap-4 flex-wrap">
-   
-    </div>
-
-</div> */}
+                <div className="official-videos flex gap-4 flex-wrap">
+                    {movieVideos?.data?.results.map((video,i) => {
+              
+                        return (
+                          
+                                <VideoBox key={i} {...video} />
+                           
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 }

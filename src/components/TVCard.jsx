@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { IMAGE_BASE_URL } from '../constants';
-import genres from '../constants/genres';
+import {TVGenres} from '../constants/genres';
 
 export default function TVCard(props) {
     const { original_title, title, poster_path, genre_ids,name } = props;
@@ -16,13 +16,13 @@ export default function TVCard(props) {
                 <h1 className="font-bold ">{original_title?? title??name}</h1>
                 <div className="genres-list absolute top-8 right-2">
                     {genre_ids?.map((_, i) => {
-                        if (genre_ids[i] === genres[i].id)
+                        if (genre_ids[i] === TVGenres[i].id)
                             return (
                                 <h2
                                     className=" w-fit m-1 text-sm bg-black bg-opacity-50 text-white rounded-xl px-1 py-0.5"
                                     key={i}
                                 >
-                                    {genres[i]?.name}
+                                    {TVGenres[i]?.name}
                                 </h2>
                             );
                     })}

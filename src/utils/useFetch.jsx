@@ -6,6 +6,7 @@ const useFetch = (url) => {
     const [data, setdata] = useState(null);
     const [loading, setloading] = useState(true);
     const [error, seterror] = useState('');
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         const options = {
@@ -15,7 +16,7 @@ const useFetch = (url) => {
                 include_adult: 'true',
                 include_video: 'true',
                 language: 'en-US',
-                page: '1',
+                page: `${page}`,
                 sort_by: 'popularity.desc',
             },
             headers: {
@@ -28,9 +29,9 @@ const useFetch = (url) => {
             setdata(data);
             setloading(false);
         });
-    }, [url]);
+    }, [page, url]);
 
-    return { data, loading, error };
+    return { data, loading, error,page,setPage };
 };
 
 export default useFetch;
