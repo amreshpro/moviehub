@@ -139,7 +139,9 @@ export default function DetailsOfMovie() {
                                 ]
                                     .map((name) => name)
                                     .slice(0, 5)
-                                    .join(', ')}
+                                    .join(', ')
+                                    ?? 'unknown'
+                                    }
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
@@ -163,7 +165,9 @@ export default function DetailsOfMovie() {
                                 ]
                                     .map((name) => name)
                                     .slice(0, 5)
-                                    .join(', ')}
+                                    .join(', ')
+                                    ?? 'unknown'
+                                    }
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
@@ -173,7 +177,7 @@ export default function DetailsOfMovie() {
 
             {/* cast */}
             <div className="casting mt-4 px-2  w-full">
-                <h1 className="text-2xl mb-4 px-2 ">Top Cast</h1>
+                <h1 className="text-2xl mb-4 px-2 ">Star Cast</h1>
                 <div className="cast flex sm:justify-center gap-8 sm:gap-4  flex-wrap">
                     {casts?.slice(0, 5).map((cast, index) => {
                         return <CastProfile key={cast.id} {...cast} />;

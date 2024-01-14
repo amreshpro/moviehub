@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import useFetch from '../utils/useFetch';
-import TVCard from './TVCard';
+import MovieCard from './MovieCard';
 
 export default function TVList() {
     const { data: tvDetails, loading: tvLoading } = useFetch('/discover/tv');
@@ -20,7 +20,7 @@ export default function TVList() {
                     console.log(tv);
                     return (
                         <Link to={`/tv/${tv.id}`} key={tv.id}>
-                            <TVCard {...tv} />
+                            <MovieCard {...tv} />
                         </Link>
                     );
                 })}
