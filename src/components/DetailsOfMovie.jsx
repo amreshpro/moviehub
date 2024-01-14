@@ -4,7 +4,7 @@ import useFetch from '../utils/useFetch';
 import { IMAGE_BASE_URL } from '../constants';
 import CastProfile from './CastProfile';
 import VideoBox from './VideoBox';
-import { useState } from 'react';
+
 
 // for month
 const months = [
@@ -24,7 +24,6 @@ const months = [
 
 export default function DetailsOfMovie() {
     const { movieId } = useParams();
-    const [videoKey, setVideoKey] = useState(null);
 
     const { data: movieDetails, loading: loadingMovieData } = useFetch(
         `/movie/${movieId}`,
@@ -53,14 +52,17 @@ export default function DetailsOfMovie() {
         runtime,
     } = movieDetails.data;
 
-    const { cast: casts } = creditDetails.data;
+    const { cast: casts, crew: crews } = creditDetails.data;
 
+    console.log(crews);
     // date object
     const d = new Date(release_date);
+
     return (
         <div className="container mt-4 px-4 ">
             <div className="details flex justify-evenly gap-2 sm:flex-wrap w-full">
                 <div className="movie-details-image sm:w-full">
+                    {/* image-poster */}
                     <img
                         src={`${IMAGE_BASE_URL}/${poster_path}`}
                         alt="movie poster"
@@ -71,7 +73,9 @@ export default function DetailsOfMovie() {
                     <h1 className="text-2xl font-bold">
                         {title}-{d.getFullYear()}
                     </h1>
+                    {/* tagline */}
                     <h2>{tagline}</h2>
+                    {/* genres */}
                     <div className="mt-2 genres flex gap-2 flex-wrap">
                         {genres?.map((genre) => {
                             const { id, name } = genre;
@@ -86,16 +90,18 @@ export default function DetailsOfMovie() {
                         })}
                     </div>
 
-                    <p>{overview}</p>
+                    <p className="mt-2">{overview}</p>
                     {/* status */}
                     <div className="mt-2 status flex flex-col sm:flex-wrap gap-3 ">
                         <hr className="w-full h-1 bg-[#e50914]" />
 
+                        {/* status */}
                         <span className="flex gap-2 ">
                             <p className="">Status: </p>
                             <p className="text-gray-700">{status}</p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
+                        {/* release date */}
                         <span className="flex gap-2 ">
                             <p className="">Release Date: </p>
                             <p className="text-gray-700">
@@ -105,10 +111,59 @@ export default function DetailsOfMovie() {
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
 
+                        {/* runtime */}
                         <span className="flex gap-2 ">
                             <p className="">Runtime: </p>
                             <p className="text-gray-700">
                                 {Math.floor(runtime / 60)}h {runtime % 60}m
+                            </p>
+                        </span>
+                        <hr className="w-full h-1 bg-[#e50914]" />
+
+                        {/* director */}
+                        <span className="flex gap-2 ">
+                            <p className="">Directors: </p>
+                            <p className="text-gray-700">
+                                {[
+                                    ...new Set(
+                                        crews
+                                            ?.filter((crew) => {
+                                                if (
+                                                    crew?.known_for_department ==
+                                                    'Directing'
+                                                )
+                                                    return crew;
+                                            })
+                                            .map((c) => c.name),
+                                    ),
+                                ]
+                                    .map((name) => name)
+                                    .slice(0, 5)
+                                    .join(', ')}
+                            </p>
+                        </span>
+                        <hr className="w-full h-1 bg-[#e50914]" />
+
+                        {/* writer */}
+                        <span className="flex gap-2 ">
+                            <p className="">Writers: </p>
+                            <p className="text-gray-700">
+                                {[
+                                    ...new Set(
+                                        crews
+                                            ?.filter((crew) => {
+                                                if (
+                                                    crew?.known_for_department ==
+                                                    'Writing'
+                                                )
+                                                    return crew;
+                                            })
+                                            .map((c) => c.name),
+                                    ),
+                                ]
+                                    .map((name) => name)
+                                    .slice(0, 5)
+                                    .join(', ')}
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
@@ -120,23 +175,29 @@ export default function DetailsOfMovie() {
             <div className="casting mt-4 px-2  w-full">
                 <h1 className="text-2xl mb-4 px-2 ">Top Cast</h1>
                 <div className="cast flex sm:justify-center gap-8 sm:gap-4  flex-wrap">
-                    {casts?.slice(0,5).map((cast, index) => {
-                        
-                            return <CastProfile key={cast.id} {...cast} />;
+                    {casts?.slice(0, 5).map((cast, index) => {
+                        return <CastProfile key={cast.id} {...cast} />;
                     })}
                 </div>
             </div>
 
-            <div className="official-videos">
-                <h1 className="text-2xl mb-4 px-2 ">Official Videos</h1>
-
-                <div className="official-videos flex gap-4 flex-wrap">
-                    {movieVideos?.data?.results.slice(0,5).map((video, i) => {
-                        console.log(video)
-                        const videoKey = video.key
-                        return <VideoBox key={i} {...video} videoKey={videoKey} />;
-                    })}
-                </div>
+            {/* movie releated videos */}
+            <div className="related-videos mt-4">
+                <h1 className="text-2xl mb-4 px-2 ">Movie Related Videos</h1>
+                    <div className="official-videos flex justify-center sm:gap-2 gap-4 flex-wrap">
+                        {movieVideos?.data?.results
+                            .slice(0, 5)
+                            .map((video, i) => {
+                                const videoKey = video.key;
+                                return (
+                                    <VideoBox
+                                        key={i}
+                                        {...video}
+                                        videoKey={videoKey}
+                                    />
+                                );
+                            })}
+                    </div>
             </div>
         </div>
     );

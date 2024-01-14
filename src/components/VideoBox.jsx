@@ -11,10 +11,10 @@ export default function VideoBox(props) {
 
     return (
         <div className="video-container">
-            <div className="video-box ">
+            <div className="video-box  w-60 h-60 ">
                 <div
                     onClick={() => setIsPopupShow(true)}
-                    className="video-thumbnail w-60 h-60 rounded-xl overflow-hidden relative border "
+                    className="video-thumbnail rounded-xl overflow-hidden relative border "
                 >
                     <img
                         src={`https://img.youtube.com/vi/${videoKey}/mqdefault.jpg`}
@@ -22,7 +22,7 @@ export default function VideoBox(props) {
                         className="w-full h-full"
                     />
 
-                    <button className="absolute top-24 right-24 ">
+                    <button className="absolute top-10 right-24 ">
                         <FaPlay className="text-5xl text-[#e50914]" />
                     </button>
                 </div>
@@ -31,12 +31,12 @@ export default function VideoBox(props) {
 
             {isPopupShow && (
                 <div
-                    className=" bg-green-600 z-50 flex flex-col justify-between w-[92vw] h-[60vh] text-center"
+                    className="z-50 flex flex-col justify-center items-center fixed w-full h-96 left-1 bottom-4 "
                 >
-                    <button onClick={() => setIsPopupShow(false)}>
+                    <button className='absolute left-40 -top-10 ' onClick={() => setIsPopupShow(false)}>
                         <IoClose className="bg-[#e50914] text-4xl  text-white" />
                     </button>
-                    <div className="player h-full">
+                    <div className="player w-[70vw] h-[70vh]  sm:w-full  sm:h-full">
                         <ReactPlayer
                             url={`https://www.youtube.com/watch?v=${videoKey}`}
                             controls
