@@ -1,24 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
-import useFetch from '../utils/useFetch';
 import MovieCard from './MovieCard';
 import { Link } from 'react-router-dom';
+import fetchDataFromApi from '../utils/fetchDataFromApi';
 
 const SearchList = () => {
-    const [searchText, setSearchText] = useState('money heist');
-    // const [searchList, setSearchList] = useState([])
+    const [searchText, setSearchText] = useState('');
+    const [searchedData, setSearchedData] = useState([])
+         const [isLoading, setIsLoading] = useState(false)
 
     const onSearchHandler = () => {
         console.log(searchText);
+        
     };
-    const {
-        data: SearchData,
-        loading: SearchDataLoading,
-        error: SearchError,
-    } = useFetch(`/search/multi?query=${searchText}`);
-    console.log(SearchData);
 
-    console.log(SearchError);
+
+useEffect(()=>{
+    const getSearchedData =async()=>{
+       setIsLoading(true)
+   const res =    await fetchDataFromApi(`/search/multi?query=${searchText}`)
+       setIsLoading(false)
+       return res
+    }
+   setSearchedData(getSearchedData)
+},[searchText])
+
+console.log(searchedData)
     return (
         <div className="search-container">
             <div className="search flex  justify-center  mt-8  ">
@@ -37,11 +44,11 @@ const SearchList = () => {
                 </button>
             </div>
 
-            {SearchDataLoading ? (
+            {isLoading ? (
                 'Loading....'
             ) : (
                 <div className="sear-list-container mt-6  flex justify-center gap-4 flex-wrap">
-                    {SearchData?.data?.results?.map((movie) => {
+                    {searchedData?.data?.results?.map((movie) => {
                         return (
                             <Link to={`/movie/${movie.id}`} key={movie.id}>
                                 <MovieCard {...movie} />
