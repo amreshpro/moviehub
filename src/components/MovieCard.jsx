@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { IMAGE_BASE_URL } from '../constants';
 import genres from '../constants/genres';
 import Rating from './Rating';
+const IMAGE_BASE_URL = import.meta.env.IMAGE_BASE_URL 
 
 // for month
 const months = [

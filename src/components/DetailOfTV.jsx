@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useParams } from 'react-router-dom';
 import useFetch from '../utils/useFetch';
-import { IMAGE_BASE_URL } from '../constants';
 import CastProfile from './CastProfile';
 import VideoBox from './VideoBox';
+const IMAGE_BASE_URL = import.meta.env.IMAGE_BASE_URL
 
 // for month
 const months = [
