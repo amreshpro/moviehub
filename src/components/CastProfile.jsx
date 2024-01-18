@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const IMAGE_BASE_URL =import.meta.env.IMAGE_BASE_URL
+const IMAGE_BASE_URL =import.meta.env.VITE_APP_IMAGE_BASE_URL
 
 const CastProfile = (props) => {
     const { character, name, profile_path } = props;

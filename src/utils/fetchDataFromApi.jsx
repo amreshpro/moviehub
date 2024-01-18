@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { BASE_URL, TMDB_TOKEN } from '../constants/socialLinks';
+
+
+// env
+const BASE_URL=import.meta.env.VITE_APP_BASE_URL;
+const TMDB_TOKEN = import.meta.env.VITE_APP_TMDB_TOKEN
 
 export default async function fetchDataFromApi(url, page = 1) {
     try {

@@ -1,8 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { BASE_URL, TMDB_TOKEN } from '../constants/socialLinks';
 
-// env variable
+
+// env
+const BASE_URL=import.meta.env.VITE_APP_BASE_URL;
+const TMDB_TOKEN = import.meta.env.VITE_APP_TMDB_TOKEN
+
+
 
 const useFetch = (url) => {
     const [data, setdata] = useState(null);
