@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BASE_URL, TMDB_TOKEN } from '../constants';
 
+// env variable
+
 const useFetch = (url) => {
     const [data, setdata] = useState(null);
     const [loading, setloading] = useState(true);
@@ -21,7 +23,7 @@ const useFetch = (url) => {
             },
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer ' + TMDB_TOKEN,
+                Authorization: 'Bearer ' +TMDB_TOKEN,
             },
         };
         axios.request(options).then((data) => {
