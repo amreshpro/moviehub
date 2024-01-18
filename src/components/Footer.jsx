@@ -1,7 +1,7 @@
 import { BsGithub, BsInstagram, BsLinkedin } from 'react-icons/bs';
 import { SiGmail } from 'react-icons/si';
 import { Link } from 'react-router-dom';
-import { socialLinks } from '../constants/socialLinks';
+import  socialLinks  from '../constants/socialLinks';
 
 const Footer = () => {
     return (
