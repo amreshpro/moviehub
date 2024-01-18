@@ -18,7 +18,7 @@ export default function Navbar() {
         <>
             <nav className="flex justify-between px-4 py-4 bg-slate-950 text-white ">
                 <h1 className="logo text-[#e50914] text-xl font-bold">
-                    Netflix
+                    Movieflix
                 </h1>
                 <Link to="/search">
                     <ImSearch className="text-2xl" />
