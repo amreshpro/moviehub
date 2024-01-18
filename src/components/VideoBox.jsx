@@ -30,10 +30,11 @@ export default function VideoBox(props) {
             </div>
 
             {isPopupShow && (
-                <div
-                    className="z-50 flex flex-col justify-center items-center fixed w-full h-96 left-1 bottom-4 "
-                >
-                    <button className='absolute left-40 -top-10 ' onClick={() => setIsPopupShow(false)}>
+                <div className="z-50 flex flex-col justify-center items-center fixed w-full h-96 left-1 bottom-4 ">
+                    <button
+                        className="absolute left-40 -top-10 "
+                        onClick={() => setIsPopupShow(false)}
+                    >
                         <IoClose className="bg-[#e50914] text-4xl  text-white" />
                     </button>
                     <div className="player w-[70vw] h-[70vh]  sm:w-full  sm:h-full">
@@ -42,7 +43,6 @@ export default function VideoBox(props) {
                             controls
                             width="100%"
                             height="100%"
-                         
                         />
                     </div>
                 </div>

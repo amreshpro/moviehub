@@ -24,9 +24,7 @@ const months = [
 export default function DetailsOftv() {
     const { tvId } = useParams();
 
-    const { data: tvDetails, loading: loadingTvData } = useFetch(
-        `/tv/${tvId}`,
-    );
+    const { data: tvDetails, loading: loadingTvData } = useFetch(`/tv/${tvId}`);
 
     const { data: creditDetails, loading: loadingCreditData } = useFetch(
         `/tv/${tvId}/credits`,
@@ -49,12 +47,10 @@ export default function DetailsOftv() {
         number_of_episodes,
         number_of_seasons,
         tagline,
-          
     } = tvDetails.data;
 
     const { cast: casts, crew: crews } = creditDetails.data;
 
-  
     // date object
     const d = new Date(first_air_date);
 
@@ -121,8 +117,6 @@ export default function DetailsOftv() {
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
 
-                     
-
                         {/* director */}
                         <span className="flex gap-2 ">
                             <p className="">Directors: </p>
@@ -142,9 +136,7 @@ export default function DetailsOftv() {
                                 ]
                                     .map((name) => name)
                                     .slice(0, 5)
-                                    .join(', ')
-                                    ?? 'unknown'
-                                    }
+                                    .join(', ') ?? 'unknown'}
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
@@ -153,8 +145,7 @@ export default function DetailsOftv() {
                         <span className="flex gap-2 ">
                             <p className="">Writers: </p>
                             <p className="text-gray-700">
-                                {
-                                    [
+                                {[
                                     ...new Set(
                                         crews
                                             ?.filter((crew) => {
@@ -169,10 +160,7 @@ export default function DetailsOftv() {
                                 ]
                                     .map((name) => name)
                                     .slice(0, 5)
-                                    .join(', ')
-                                    
-                                    ?? 'unknown'
-                                    }
+                                    .join(', ') ?? 'unknown'}
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />

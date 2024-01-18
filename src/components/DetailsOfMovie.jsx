@@ -5,7 +5,6 @@ import { IMAGE_BASE_URL } from '../constants';
 import CastProfile from './CastProfile';
 import VideoBox from './VideoBox';
 
-
 // for month
 const months = [
     'January',
@@ -139,9 +138,7 @@ export default function DetailsOfMovie() {
                                 ]
                                     .map((name) => name)
                                     .slice(0, 5)
-                                    .join(', ')
-                                    ?? 'unknown'
-                                    }
+                                    .join(', ') ?? 'unknown'}
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
@@ -165,9 +162,7 @@ export default function DetailsOfMovie() {
                                 ]
                                     .map((name) => name)
                                     .slice(0, 5)
-                                    .join(', ')
-                                    ?? 'unknown'
-                                    }
+                                    .join(', ') ?? 'unknown'}
                             </p>
                         </span>
                         <hr className="w-full h-1 bg-[#e50914]" />
@@ -188,20 +183,14 @@ export default function DetailsOfMovie() {
             {/* movie releated videos */}
             <div className="related-videos mt-4">
                 <h1 className="text-2xl mb-4 px-2 ">Movie Related Videos</h1>
-                    <div className="official-videos flex justify-center sm:gap-2 gap-4 flex-wrap">
-                        {movieVideos?.data?.results
-                            .slice(0, 5)
-                            .map((video, i) => {
-                                const videoKey = video.key;
-                                return (
-                                    <VideoBox
-                                        key={i}
-                                        {...video}
-                                        videoKey={videoKey}
-                                    />
-                                );
-                            })}
-                    </div>
+                <div className="official-videos flex justify-center sm:gap-2 gap-4 flex-wrap">
+                    {movieVideos?.data?.results.slice(0, 5).map((video, i) => {
+                        const videoKey = video.key;
+                        return (
+                            <VideoBox key={i} {...video} videoKey={videoKey} />
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

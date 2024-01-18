@@ -13,29 +13,25 @@ const SearchList = () => {
         console.log(searchText);
     };
 
- 
-
     useEffect(() => {
+        const timer = setTimeout(() => {
+            console.log('value: ' + searchText);
+            async function getSearchedData() {
+                setIsLoading(true);
+                const res = await fetchDataFromApi(
+                    `/search/multi?query=${searchText}`,
+                );
+                setIsLoading(false);
+                return res.data;
+            }
 
-const timer = setTimeout(()=>{
-console.log("value: "+searchText)
-async function getSearchedData() {
-    setIsLoading(true);
-    const res = await fetchDataFromApi(`/search/multi?query=${searchText}`);
-    setIsLoading(false)
-    return res.data;
-}
+            getSearchedData().then((res) => {
+                setSearchedData(res);
+                console.log(res);
+            });
+        }, 500);
 
-getSearchedData().then((res) => {
-    setSearchedData(res);
-    console.log(res);
-
-});
-},500)
-
-return ()=>clearTimeout(timer)
-
-
+        return () => clearTimeout(timer);
     }, [searchText]);
 
     return (
