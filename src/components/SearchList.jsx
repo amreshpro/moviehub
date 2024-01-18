@@ -6,26 +6,38 @@ import fetchDataFromApi from '../utils/fetchDataFromApi';
 
 const SearchList = () => {
     const [searchText, setSearchText] = useState('');
-    const [searchedData, setSearchedData] = useState([])
-         const [isLoading, setIsLoading] = useState(false)
+    const [searchedData, setSearchedData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onSearchHandler = () => {
         console.log(searchText);
-        
     };
 
+ 
 
-useEffect(()=>{
-    const getSearchedData =async()=>{
-       setIsLoading(true)
-   const res =    await fetchDataFromApi(`/search/multi?query=${searchText}`)
-       setIsLoading(false)
-       return res
-    }
-   setSearchedData(getSearchedData)
-},[searchText])
+    useEffect(() => {
 
-console.log(searchedData)
+const timer = setTimeout(()=>{
+console.log("value: "+searchText)
+async function getSearchedData() {
+    setIsLoading(true);
+    const res = await fetchDataFromApi(`/search/multi?query=${searchText}`);
+    setIsLoading(false)
+    return res.data;
+}
+
+getSearchedData().then((res) => {
+    setSearchedData(res);
+    console.log(res);
+
+});
+},500)
+
+return ()=>clearTimeout(timer)
+
+
+    }, [searchText]);
+
     return (
         <div className="search-container">
             <div className="search flex  justify-center  mt-8  ">
@@ -48,7 +60,7 @@ console.log(searchedData)
                 'Loading....'
             ) : (
                 <div className="sear-list-container mt-6  flex justify-center gap-4 flex-wrap">
-                    {searchedData?.data?.results?.map((movie) => {
+                    {searchedData?.results?.map((movie) => {
                         return (
                             <Link to={`/movie/${movie.id}`} key={movie.id}>
                                 <MovieCard {...movie} />
