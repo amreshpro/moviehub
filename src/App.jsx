@@ -1,11 +1,13 @@
-const App = () => {
-    return (
-        <div
-            className="bg-blue-200
-     text-blue-800"
-        >
-            App
-        </div>
-    );
-};
-export default App;
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+export default function AppLayout() {
+  return (
+    <div>
+      <Navbar/>
+      <Outlet/>
+      <Footer/>
+    </div>
+  )
+}
