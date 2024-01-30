@@ -1,3 +1,3 @@
-import LOGO from '/logo.jpeg'
+import LOGO from "/logo.jpeg";
 
-export  {LOGO}
+export { LOGO };

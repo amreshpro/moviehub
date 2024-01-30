@@ -8,33 +8,32 @@ import TVList from "./components/TVList.jsx";
 import MovieList from "./components/MovieList.jsx";
 import SearchList from "./components/SearchList.jsx";
 
-
-const router= createBrowserRouter([
+const router = createBrowserRouter([
     {
-        path:"/",
-        element:<AppLayout/>,
-        errorElement:<Error/>,
-        children:[
+        path: "/",
+        element: <AppLayout />,
+        errorElement: <Error />,
+        children: [
             {
-                path:"/",
-                element:<Hero/>
+                path: "/",
+                element: <Hero />,
             },
             {
-                path:"/tv",
-                element:<TVList/>
+                path: "/tv",
+                element: <TVList />,
             },
             {
-                path:"/movie",
-                element:<MovieList/>
+                path: "/movie",
+                element: <MovieList />,
             },
             {
-                path:"/search",
-                element:<SearchList/>
-            }
-        ]
-    }
-])
+                path: "/search",
+                element: <SearchList />,
+            },
+        ],
+    },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-        <RouterProvider router={router} />
+    <RouterProvider router={router} />,
 );

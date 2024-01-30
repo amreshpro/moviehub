@@ -1,5 +1,3 @@
 export default function SearchPopup() {
-  return (
-    <div>SearchPopup</div>
-  )
+    return <div>SearchPopup</div>;
 }

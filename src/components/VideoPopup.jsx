@@ -1,5 +1,3 @@
 export default function VideoPopup() {
-  return (
-    <div>VideoPopup</div>
-  )
+    return <div>VideoPopup</div>;
 }

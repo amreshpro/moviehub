@@ -1,5 +1,3 @@
 export default function TopRated() {
-  return (
-    <div>TopRated</div>
-  )
+    return <div>TopRated</div>;
 }

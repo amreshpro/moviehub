@@ -1,5 +1,3 @@
 export default function Popular() {
-  return (
-    <div>Popular</div>
-  )
+    return <div>Popular</div>;
 }

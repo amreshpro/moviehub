@@ -1,5 +1,3 @@
 export default function MovieList() {
-  return (
-    <div>MovieList</div>
-  )
+    return <div>MovieList</div>;
 }

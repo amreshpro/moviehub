@@ -1,5 +1,3 @@
 export default function RelatedVideosList() {
-  return (
-    <div>RelatedVideosList</div>
-  )
+    return <div>RelatedVideosList</div>;
 }

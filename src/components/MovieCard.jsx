@@ -1,5 +1,3 @@
 export default function MovieCard() {
-  return (
-    <div>MovieCard</div>
-  )
+    return <div>MovieCard</div>;
 }
