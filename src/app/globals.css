@@ -1,33 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* font  start  */
+
+.font-cursive{
+    font-family: 'Style Script', cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.font-openSans {
+  font-family: 'Anek Latin', sans-serif;
+
+
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* font end */
+
+
+
+:root{
+  margin: 0;
+  padding: 0;
+  background-origin: border-box;
+ font-family: 'Anek Latin', sans-serif;
+
+  scroll-behavior: smooth;
+
+  --dark-bg:#10141b;
+  --dark-text:rgb(4, 5, 6);
+  --light-bg:#dbeafe;
+  --light-text:#e2e2e2;
+
+  --hero-light-bg:#5aa4ff;
+  --hero-dark-bg:#010e1d;
+  --hero-light-text:#fff;
+  --hero-dark-text:#01030e;
+
+--dark-mobile-menu:#452c63;
+--light-mobile-menu:#c1ccec;
+
+  /* color */
+--hallmark-purple:#452c63;
+  --royal-blue:#4169E1;
+  --del-blue:#0076CE;
+  --celdon-light:#ACE1AF;
+  --col-blue:#B9D9EB;
+  --kc-blue:#004687;
+  --light-cyan:#E0FFFF;
+  --perwinkle:#CCCCFF;
+  --hover-link:#044f20;
+  --uranian-blue:#AFDBF5;
+  
+}
+
+
+
+.dark{
+background-color: var(--dark-bg);
+color: var(--light-text);
+}
+
+.light{
+background-color: var(--light-bg);
+color: var(--dark-text);
+}
+
+.hero-dark{
+background-color: var(--hero-dark-bg);
+color: var(--hero-light-text);
+}
+
+.hero-light{
+background-color:var(--hero-light-bg);
+color:var(--hero-dark-text) ;
+}
+
+
+@keyframes move {
+  0%,100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+   25% {
+    border-radius: 38% 68% 78% 48% / 58% 68% 38% 68%;
   }
+   50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+     65% {
+    border-radius: 33% 67% 75% 48% / 55% 68% 37% 69%;
+  }
+     70% {
+    border-radius: 55% 45% 80% 65% / 50% 40% 55% 40%;
+  }
+
 }
