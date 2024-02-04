@@ -39,9 +39,14 @@
 
   scroll-behavior: smooth;
 
-  --dark-bg:#10141b;
+--base-one:#41436a;
+--base-two:#984063;
+--base-three:#f64668;
+--base-four:#fe9677;
+
+  --dark-bg:#41436a;
   --dark-text:rgb(4, 5, 6);
-  --light-bg:#dbeafe;
+  --light-bg:var(var(--base-four))
   --light-text:#e2e2e2;
 
   --hero-light-bg:#5aa4ff;
