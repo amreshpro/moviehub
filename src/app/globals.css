@@ -39,23 +39,40 @@
 
   scroll-behavior: smooth;
 
---base-one:#41436a;
---base-two:#984063;
---base-three:#f64668;
---base-four:#fe9677;
+--base-one:#060826;
+--base-one-shade1:#7f809e;
 
-  --dark-bg:#41436a;
-  --dark-text:rgb(4, 5, 6);
-  --light-bg:var(var(--base-four))
-  --light-text:#e2e2e2;
+--base-two:#984063;
+--base-two-shade1:#dc86a9;
+
+--base-three:#f64668;
+--base-three-shade1:#f994a9;
+
+--base-four:#fe9677;
+--base-four-shade1:#fbddd4;
+
+
+--text-base1:#c3cbc3;
+--text-base2:#bdb7b7;
+
+
+  --dark-bg:var(--base-one);
+  --dark-text:var(--base-three);
+  --light-bg:var(--base-four-shade1);
+  --light-text:var(--text-base1);
+
+
+  --secondary-dark:#1d1b36;
+
+
 
   --hero-light-bg:#5aa4ff;
   --hero-dark-bg:#010e1d;
   --hero-light-text:#fff;
   --hero-dark-text:#01030e;
 
---dark-mobile-menu:#452c63;
---light-mobile-menu:#c1ccec;
+--dark-mobile-menu:var(--secondary-dark);
+--light-mobile-menu:var(--base-three);
 
   /* color */
 --hallmark-purple:#452c63;
@@ -75,14 +92,26 @@
 
 .dark{
 background-color: var(--dark-bg);
-color: var(--light-text);
+color: var(--base-three-shade1);
+
 }
 
 .light{
 background-color: var(--light-bg);
 color: var(--dark-text);
+
 }
 
+.dark-menu{
+    background: var(--dark-mobile-menu);
+
+    color: var(--base-three-shade1);
+}
+
+.light-menu{
+    background: var(--light-mobile-menu);
+color: var(--base-four-shade1);
+}
 .hero-dark{
 background-color: var(--hero-dark-bg);
 color: var(--hero-light-text);

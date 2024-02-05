@@ -8,8 +8,8 @@ export default function Sidebar() {
     <div
       className={` ${
         theme == "dark"
-          ? "bg-[#151b27] text-gray-200"
-          : "bg-[#badaf8] text-blue-900"
+          ? "dark-menu"
+          : "light-menu"
       } h-fit absolute right-1 w-36 rounded-xl z-50`}
     >
       <ul className="my-16 flex flex-col gap-4 text-2xl   justify-center  items-center mt-4">
