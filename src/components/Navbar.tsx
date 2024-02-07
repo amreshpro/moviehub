@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { CgMenuRight } from "react-icons/cg";
+import { IoSearchSharp } from "react-icons/io5";
 import { TfiClose } from "react-icons/tfi";
 import { motion } from "framer-motion";
 import ThemeChangeAnimation from "@/pages/ThemeChangeAnimation";
@@ -9,12 +10,14 @@ import Link from "next/link";
 import NAV_LINKS from "@/constants/NAV_LINKS";
 import Sidebar from "@/pages/Sidebar";
 import { useThemeContext } from "@/providers/context";
+import SearchPopup from "./SearchPopup";
 
 export default function Navbar() {
   const { theme, setTheme } = useThemeContext();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [themeChangeAnimation, setThemeChangeAnimation] = useState(false);
+const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false)
 
   const themeChangeHandler = () => {
     setThemeChangeAnimation(true);
@@ -22,6 +25,10 @@ export default function Navbar() {
       return prev === "dark" ? "light" : "dark";
     });
   };
+
+  const searchPopupHandler=()=>{
+setIsSearchPopupOpen(!isSearchPopupOpen);
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,6 +64,9 @@ export default function Navbar() {
               <BsMoonStarsFill className="pb-0.5" />
             )}
           </button>
+
+{/* search popup  */}
+          <button onClick={searchPopupHandler} className="text-2xl mb-2.5"><IoSearchSharp/></button>
         </div>
         {/* links */}
         <ul className="flex gap-4 sm:hidden">
@@ -104,6 +114,25 @@ export default function Navbar() {
           <Sidebar />
         </motion.div>
       )}
+
+{
+    isSearchPopupOpen && (
+      <motion.div
+        initial={{ scale: 0.5, rotate: -40 }}
+        animate={{ rotate: 0, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+        className="z-50"
+      >
+        <SearchPopup />
+      </motion.div>
+    )
+}
+
+
     </nav>
   );
 }

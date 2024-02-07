@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 // env
@@ -13,6 +14,7 @@ export const useFetch = (url: string) => {
   useEffect(() => {
     const options = {
       method: "GET",
+      url:`${BASE_URL}${url}`,
       params: {
         include_adult: "true",
         include_video: "true",
@@ -27,15 +29,11 @@ export const useFetch = (url: string) => {
     };
     setLoading(true);
 
-    fetch(`${BASE_URL}${url}`, { headers: {
-        accept: "application/json",
-        Authorization: "Bearer " + TMDB_TOKEN,
-      }})
+    axios(options)
       //    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((res) =>res.json())
+    //   .then((res) =>res.json())
       .then((data) => {
         setData(data);
-        console.log(data);
         setLoading(false);
       })
       .catch((err) => {

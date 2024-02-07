@@ -39,7 +39,7 @@
 
   scroll-behavior: smooth;
 
---base-one:#060826;
+--base-one:#020316;
 --base-one-shade1:#7f809e;
 
 --base-two:#984063;
@@ -92,7 +92,7 @@
 
 .dark{
 background-color: var(--dark-bg);
-color: var(--base-three-shade1);
+color: var(--text-base2);
 
 }
 

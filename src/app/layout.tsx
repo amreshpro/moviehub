@@ -16,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning={true}>
           <body>
+            <main>
+
       <ThemeProvider>
         <ThemeWrapper>
             <Navbar />
@@ -25,6 +27,7 @@ export default function RootLayout({
             <Footer />
         </ThemeWrapper>
       </ThemeProvider>
+            </main>
           </body>
     </html>
   );
