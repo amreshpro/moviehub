@@ -12,7 +12,7 @@ const Rating = (props:PropsRatingType) => {
                 value={rating}
                 minValue={0}
                 maxValue={10}
-                text={`${rating.toFixed(1)}`}
+                text={`${rating?.toFixed(1)}`}
                 styles={buildStyles({
                     pathColor:
                         rating < 5 ? 'red' : rating < 7 ? 'orange' : 'green',

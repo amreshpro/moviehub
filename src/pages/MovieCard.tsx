@@ -2,6 +2,7 @@ import { MOVIE_GENRES } from "@/constants/GENRES";
 import LazyImage from "./LazyImage";
 import Rating from "./Rating";
 import dayjs from "dayjs";
+import Image from "next/image";
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
 
@@ -36,13 +37,15 @@ export default function MovieCard(props: MovieCardPropType) {
         src={`${IMAGE_BASE_URL}/${poster_path}`}
         alt="Movie Poster"
         className=" h-72 w-full rounded-xl"
+        
       />
       <div className="content  px-2 py-2">
         <h1 className="font-bold ">{original_title ?? title ?? name}</h1>
         <p>{dayjs(release_date || first_air_date).format("MMM D, YYYY")}</p>
 
         <div className="rating absolute top-8 ">
-          <Rating rating={vote_average} />
+    {vote_average && <Rating rating={vote_average} />
+    }     
         </div>
 <h1 className="absolute text-red-500 font-bold ">{adult ? "18+":''}</h1>
 

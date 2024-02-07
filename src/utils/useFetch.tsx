@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 // env
 const TMDB_TOKEN = process.env.NEXT_PUBLIC_TMDB_TOKEN;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+
 export const useFetch = (url: string) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

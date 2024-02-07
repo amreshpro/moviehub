@@ -1,39 +1,34 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
-const LazyImage = ({ src, alt,className='' }:{src:string,alt:string,className:string}) => {
-  const imgRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+const placeholderImage='/movie-placeholder.jpg'
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      });
-    });
+type ImageTypes={
+    src:string,
+    alt:string,
+    className:string,
+    width:number,
+    heigth:number,
+}
 
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
+export default function LazyImage({src,alt="image-poster",className,width,heigth}:ImageTypes) {
+ 
+ const [imgSrc, setImgSrc] = useState(placeholderImage)
 
-    return () => {
-      if (imgRef.current) {
-        observer.unobserve(imgRef.current);
-      }
-    };
-  }, []);
+useEffect(()=>{
+const img = new Image();
+img.src=src
+img.onload=()=>{
+    setImgSrc(src)
+}
+},[src])
 
-  return (
+    return (
     <img
-      ref={imgRef}
-      src={isVisible ? src : '/movie-placeholder.jpg'}
-      alt={alt}
-      className={className}
-      style={{transition: 'opacity 0.5s ease-in-out' }}
+    src={imgSrc}
+    alt={alt}
+    className={className}
+    width={width}
+    height={heigth}
     />
-  );
-};
-
-export default LazyImage;
+  )
+}
