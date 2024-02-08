@@ -2,7 +2,6 @@
 
 import MovieCard from "@/pages/MovieCard";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
-import { useFetch } from "@/utils/useFetch";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

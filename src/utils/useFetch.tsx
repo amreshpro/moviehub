@@ -12,6 +12,8 @@ export const useFetch = (url: string) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number>(0)
+
 
   useEffect(() => {
     const options = {
@@ -32,10 +34,10 @@ export const useFetch = (url: string) => {
     setLoading(true);
 
     axios(options)
-      //    fetch('https://jsonplaceholder.typicode.com/posts')
-    //   .then((res) =>res.json())
-      .then((data) => {
-        setData(data);
+       .then((data) => {
+        console.log(data)
+        setTotalPages(data?.data?.total_pages)
+        setData(data?.data?.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -43,6 +45,7 @@ export const useFetch = (url: string) => {
         setLoading(false);
       });
   }, [page, url]);
+  console.log("page:"+page)
 
-  return { data, loading, error, page, setPage };
+  return { data, loading, error, page, setPage,totalPages,setTotalPages };
 };
