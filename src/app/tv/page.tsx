@@ -1,11 +1,12 @@
 "use client";
 import MovieCard from "@/pages/MovieCard";
 import { useFetch } from "@/utils/useFetch";
-import { IoIosArrowForward,IoIosArrowBack  } from "react-icons/io";
+import Link from "next/link";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 export default function Movies() {
-  const { data, loading, error ,page,setPage,totalPages} = useFetch("/discover/tv");
-
+  const { data, loading, error, page, setPage, totalPages } =
+    useFetch("/discover/tv");
 
   console.log(loading);
   console.log(error);
@@ -14,16 +15,14 @@ export default function Movies() {
   return (
     <div>
       TV Shows
-
       <div className="cards flex flex-wrap gap-4 px-2 justify-center my-4 ">
-
-        {
-            data?.map((tv: any) => {
-              return (
-                <MovieCard key={tv?.id} {...tv}  />
-              );
-            })
-        }
+        {data?.map((tv: any) => {
+          return (
+            <Link href={`/tv/${tv?.id}`} key={tv?.id}>
+              <MovieCard {...tv} />
+            </Link>
+          );
+        })}
       </div>
       <div className="pagination mt-4 flex gap-2 justify-center text-3xl">
         <button
@@ -48,7 +47,6 @@ export default function Movies() {
           <IoIosArrowForward />
         </button>
       </div>
-
     </div>
   );
 }

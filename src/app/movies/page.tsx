@@ -2,6 +2,7 @@
 // import Carousel from "@/pages/Carousel";
 import MovieCard from "@/pages/MovieCard";
 import { useFetch } from "@/utils/useFetch";
+import Link from "next/link";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 export default function Movies() {
@@ -14,10 +15,13 @@ export default function Movies() {
   return (
     <div>
       Movies
-      {/* <Carousel /> */}
       <div className="cards flex flex-wrap gap-4 px-2 justify-center my-4 ">
         {data?.map((movie: any) => {
-          return <MovieCard key={movie.id} {...movie} />;
+          return (
+            <Link href={`/movies/${movie?.id}`} key={movie.id} >
+              <MovieCard {...movie} />;
+            </Link>
+          );
         })}
       </div>
       <div className="pagination mt-4 flex gap-2 justify-center text-3xl">
