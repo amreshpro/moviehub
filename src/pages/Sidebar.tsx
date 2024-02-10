@@ -10,7 +10,7 @@ export default function Sidebar() {
         theme == "dark"
           ? "dark-menu"
           : "light-menu"
-      } h-fit absolute right-1 w-36 rounded-xl z-50`}
+      } h-fit absolute right-8 top-16   w-36 rounded-xl z-50`}
     >
       <ul className="my-16 flex flex-col gap-4 text-2xl   justify-center  items-center mt-4">
         {NAV_LINKS?.map((link) => {

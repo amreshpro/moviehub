@@ -23,7 +23,9 @@ export default function RootLayout({
       <ThemeProvider>
         <ThemeWrapper>
             <Navbar />
+            <div className="components pt-32">
             {children}
+            </div>
             <Footer />
         </ThemeWrapper>
       </ThemeProvider>

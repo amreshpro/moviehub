@@ -13,19 +13,19 @@ export default function SearchPopup() {
   };
 
   return (
-    <div className=" absolute w-screen flex  justify-center px-2 py-2">
+    <div className=" z-50 absolute  top-24 w-screen flex  justify-center px-2 py-2">
       <input
         type="text"
         value={searchText}
         onKeyUp={onSearchHandler}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Search your movie... "
-        className="outline-none px-2 py-1 text-xl"
+        className="outline-none px-2 w-[50vw] h-14 text-black sm:h-8 md:w-[80vw] sm:w-[90vw] py-1 text-2xl sm:text-xl"
       />
       <Link
         href={`/search/${searchText ==''? '#':searchText}`}
         onKeyDown={onSearchHandler}
-        className="text-xl flex items-center bg-red-500 text-white  px-2 "
+        className="text-xl flex items-center bg-red-500 text-white px-4 sm:px-2 "
       >
         <IoSearchOutline />
       </Link>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import { BsMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { CgMenuRight } from "react-icons/cg";
@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [themeChangeAnimation, setThemeChangeAnimation] = useState(false);
-const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false)
+  const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false);
 
   const themeChangeHandler = () => {
     setThemeChangeAnimation(true);
@@ -26,9 +26,10 @@ const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false)
     });
   };
 
-  const searchPopupHandler=()=>{
-setIsSearchPopupOpen(!isSearchPopupOpen);
-  }
+  const searchPopupHandler = () => {
+    setIsSearchPopupOpen(!isSearchPopupOpen);
+    console.log("searcbox fun")
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,8 +42,13 @@ setIsSearchPopupOpen(!isSearchPopupOpen);
   }
 
   return (
-    <nav className={`mb-8 z-50 `}>
-      <div className="flex justify-between sm:px-2 md:px-4 px-8 py-4">
+    <>
+    <nav
+      className={`mb-16 ${
+        theme == "dark" ? "dark-nav" : "light-nav"
+      }  flex justify-between  z-50 fixed  `}
+    >
+      <div className="flex justify-between w-[100vw]  sm:px-2 md:px-4 px-8 py-4">
         <div className="flex gap-4">
           {/* logo */}
           <Link
@@ -54,8 +60,8 @@ setIsSearchPopupOpen(!isSearchPopupOpen);
           {/* dark mode btn */}
           <button
             onClick={themeChangeHandler}
-            className={`text-xl mb-1 flex items-start link-hover hover:rounded-full p-2 ${
-              theme === "dark" ? "hover:bg-blue-900 " : "hover:bg-blue-300"
+            className={` hidden  text-xl mb-1 sm:flex items-start link-hover hover:rounded-full p-2 
+
             }`}
           >
             {theme === "dark" ? (
@@ -65,11 +71,36 @@ setIsSearchPopupOpen(!isSearchPopupOpen);
             )}
           </button>
 
-{/* search popup  */}
-          <button onClick={searchPopupHandler} className="text-2xl mb-2.5"><IoSearchSharp/></button>
+          {/* search popup btn  */}
+          <button
+            onClick={searchPopupHandler}
+            className="hidden sm:flex text-2xl mt-1"
+          >
+            <IoSearchSharp />
+          </button>
         </div>
         {/* links */}
         <ul className="flex gap-4 sm:hidden">
+          {/* search popup btn  */}
+          <button
+            onClick={searchPopupHandler}
+            className="sm:hidden text-2xl "
+          >
+            <IoSearchSharp />
+          </button>
+
+          {/* dark mode btn */}
+          <button
+            onClick={themeChangeHandler}
+            className={` sm:hidden text-xl mb-1 flex items-start link-hover hover:rounded-full p-2 `}
+          >
+            {theme === "dark" ? (
+              <BsFillSunFill className="pb-0.5" />
+            ) : (
+              <BsMoonStarsFill className="pb-0.5" />
+            )}
+          </button>
+
           {NAV_LINKS?.map((link) => {
             return (
               <li
@@ -89,7 +120,7 @@ setIsSearchPopupOpen(!isSearchPopupOpen);
 
         {/* menu button */}
         <button
-          className="hidden text-3xl sm:flex"
+          className="hidden text-3xl pr-4 sm:flex"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
@@ -100,7 +131,11 @@ setIsSearchPopupOpen(!isSearchPopupOpen);
         </button>
       </div>
 
-      {isMobileMenuOpen && (
+     
+    </nav>
+
+
+    {isMobileMenuOpen && (
         <motion.div
           initial={{ scale: 0.5, rotate: -40 }}
           animate={{ rotate: 0, scale: 1 }}
@@ -115,24 +150,23 @@ setIsSearchPopupOpen(!isSearchPopupOpen);
         </motion.div>
       )}
 
-{
-    isSearchPopupOpen && (
-      <motion.div
-        initial={{ scale: 0.5, rotate: -40 }}
-        animate={{ rotate: 0, scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-        }}
-        className="z-50"
-      >
-        <SearchPopup />
-      </motion.div>
-    )
-}
+      {isSearchPopupOpen && (
+        <motion.div
+          initial={{ scale: 0.5, rotate: -40 }}
+          animate={{ rotate: 0, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+          }}
+          className="z-50 "
+        >
+          <SearchPopup />
+        </motion.div>
+      )}
 
 
-    </nav>
+    </>
+
   );
 }
