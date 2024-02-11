@@ -24,13 +24,13 @@ type CarouselPropType ={
 export default function Carousel({data}:CarouselPropType) {
  const [currentSlide, setCurrentSlide] = useState(0)
     return (
-    <div className="container flex gap-4  snap-mandatory snap-x px-4  ">
+    <div className="container flex gap-4 overflow-x-scroll snap-mandatory snap-x px-4  ">
 
 {
     data?.map((item)=>{
         return(
             <Link href={`/movies/${item?.id}`} key={item?.id} >
-              <MovieCard {...item} />;
+              <MovieCard {...item} />
             </Link> 
         )
     })
