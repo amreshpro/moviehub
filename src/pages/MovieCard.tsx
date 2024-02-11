@@ -4,7 +4,7 @@ import Rating from "./Rating";
 import dayjs from "dayjs";
 import Image from "next/image";
 
-const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL
 
 type MovieCardPropType = {
   adult: boolean;
@@ -16,7 +16,7 @@ type MovieCardPropType = {
   genre_ids: number[];
   name: string;
   vote_average: number;
-};
+}
 
 export default function MovieCard(props: MovieCardPropType) {
   const {
@@ -32,7 +32,7 @@ export default function MovieCard(props: MovieCardPropType) {
   } = props;
 
   return (
-    <div className="sticky w-60    overflow-hidden">
+    <div className="sticky w-60  overflow-hidden">
       <LazyImage
         src={`${IMAGE_BASE_URL}/${poster_path}`}
         alt="Movie Poster"
@@ -60,10 +60,10 @@ export default function MovieCard(props: MovieCardPropType) {
                 >
                   {MOVIE_GENRES[i]?.name}
                 </h2>
-              );
+              )
           })}
         </div>
       </div>
     </div>
-  );
+  )
 }

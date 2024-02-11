@@ -19,9 +19,9 @@ export default function Movies() {
         {data?.map((movie: any) => {
           return (
             <Link href={`/movies/${movie?.id}`} key={movie.id} >
-              <MovieCard {...movie} />;
+              <MovieCard {...movie} />
             </Link>
-          );
+          )
         })}
       </div>
       <div className="pagination mt-4 flex gap-2 justify-center text-3xl">
@@ -31,18 +31,18 @@ export default function Movies() {
               return prev > 1 ? prev - 1 : prev;
             })
           }
-          className="bg-[#0f101a] px-4 py-0.5"
+          className="bg-[#27f4a5] text-white px-4 py-0.5"
         >
           <IoIosArrowBack />
         </button>
-        <p className="bg-[#0f101a] px-4 py-0.5">{page}</p>
+        <p className="bg-[#27f4a5] text-white px-4 py-0.5">{page}</p>
         <button
           onClick={() =>
             setPage((prev: number) => {
               return totalPages > prev ? prev + 1 : prev;
             })
           }
-          className="bg-[#0f101a] px-4 py-0.5"
+          className="bg-[#27f4a5] text-white  px-4 py-0.5"
         >
           <IoIosArrowForward />
         </button>

@@ -56,12 +56,12 @@
 
 
   --dark-bg:var(--base-one);
-  --dark-text:var(--base-three);
-  --light-bg:var(--base-four-shade1);
+  --dark-text:#2b282d;
+  --light-bg:#e7f8fe;
   --light-text:var(--text-base1);
 
 --dark-nav-bg:#0b0d34;
---light-nav-bg:#f9b2d0;
+--light-nav-bg:#b2f9ef;
 
 
 
