@@ -37,7 +37,9 @@
   background-origin: border-box;
  font-family: 'Anek Latin', sans-serif;
   scroll-behavior: smooth;
-
+  ::-webkit-scrollbar {
+    display: none;
+  }
 --base-one:#020316;
 --base-one-shade1:#7f809e;
 
@@ -57,7 +59,7 @@
 
   --dark-bg:var(--base-one);
   --dark-text:#2b282d;
-  --light-bg:#e7f8fe;
+  --light-bg:#caebf7;
   --light-text:var(--text-base1);
 
 --dark-nav-bg:#0b0d34;

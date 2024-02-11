@@ -4,7 +4,7 @@ import { useFetch } from "@/utils/useFetch";
 
 export default function Hero() {
   const { data, loading, error, page, setPage, totalPages } =
-    useFetch("/discover/movie");
+    useFetch("/trending/movie/day");
 console.log(data)
     if(loading) return 'Loading...'
 
