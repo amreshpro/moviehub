@@ -1,5 +1,4 @@
 "use client";
-/* tslint:disable */
 import Link from "next/link";
 import { useRef, useState } from "react";
 import MovieCard from "./MovieCard";
@@ -24,7 +23,7 @@ type CarouselPropType = {
 };
 
 export default function Carousel({ data }: CarouselPropType) {
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
     if (containerRef.current) {
