@@ -37,7 +37,8 @@ export default function MovieCard(props: MovieCardPropType) {
         src={`${IMAGE_BASE_URL}/${poster_path}`}
         alt="Movie Poster"
         className=" h-72 w-full rounded-xl"
-        
+        width={100}
+        heigth={288}
       />
       <div className="content  px-2 py-2">
         <h1 className="font-bold ">{original_title ?? title ?? name}</h1>

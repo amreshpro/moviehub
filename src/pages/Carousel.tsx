@@ -1,52 +1,42 @@
-import Image from 'next/image';
-import React, { useState } from 'react';
+"use client"
+import Link from "next/link"
+import { useState } from "react"
+import MovieCard from "./MovieCard"
 
-const images = [
-  'https://via.placeholder.com/600x400?text=Slide+1',
-  'https://via.placeholder.com/600x400?text=Slide+2',
-  'https://via.placeholder.com/600x400?text=Slide+3',
-];
 
-const Carousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+type MovieCardPropType = {
+    id:number,
+    adult: boolean;
+    original_title: string;
+    title: string;
+    poster_path: string;
+    release_date: string;
+    first_air_date: string;
+    genre_ids: number[];
+    name: string;
+    vote_average: number;
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
+type CarouselPropType ={
+    data:MovieCardPropType[],
+}
 
-  return (
-    <div className="relative">
-      <div className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {images.map((imageUrl, index) => (
-            <div key={index} className="w-full flex-shrink-0">
-              <Image width={100} height={100} src={imageUrl} alt={`Slide ${index + 1}`} className="w-full" />
-            </div>
-          ))}
-        </div>
-      </div>
-      <button
-        onClick={prevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 focus:outline-none"
-      >
-        <button className="h-6 w-6" >btn1</button>
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 focus:outline-none"
-      >
-        <button className="h-6 w-6" >btn2</button>
-     
-      </button>
+export default function Carousel({data}:CarouselPropType) {
+ const [currentSlide, setCurrentSlide] = useState(0)
+    return (
+    <div className="container flex gap-4  snap-mandatory snap-x px-4  ">
+
+{
+    data?.map((item)=>{
+        return(
+            <Link href={`/movies/${item?.id}`} key={item?.id} >
+              <MovieCard {...item} />;
+            </Link> 
+        )
+    })
+}
+
+
     </div>
-  );
-};
-
-export default Carousel;
+  )
+}
