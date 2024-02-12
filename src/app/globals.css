@@ -58,12 +58,12 @@
 
 
   --dark-bg:var(--base-one);
-  --dark-text:#2b282d;
-  --light-bg:#caebf7;
+  --dark-text:#0c2543;
+  --light-bg:#b0cece;
   --light-text:var(--text-base1);
 
 --dark-nav-bg:#0b0d34;
---light-nav-bg:#b2f9ef;
+--light-nav-bg:#a0cece;
 
 
 
@@ -77,7 +77,7 @@
   --hero-dark-text:#01030e;
 
 --dark-mobile-menu:var(--secondary-dark);
---light-mobile-menu:var(--base-three);
+--light-mobile-menu:#98d8d8;
 
  
 }
@@ -112,12 +112,10 @@ color: var(--dark-text);
 .dark-menu{
     background: var(--dark-mobile-menu);
 
-    color: var(--base-three-shade1);
 }
 
 .light-menu{
     background: var(--light-mobile-menu);
-color: var(--base-four-shade1);
 }
 .hero-dark{
 background-color: var(--hero-dark-bg);
