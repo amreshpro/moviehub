@@ -3,28 +3,31 @@ import fetchDataFromApi from "@/utils/fetchDataFromApi"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
-export default function DetailsOfMovies() {
+export default function DetailsOfTV() {
 const router = useParams();
 const [loading, setLoading] = useState(false);
-const [movieDetails, setMovieDetails] = useState([])
+const [tvDetails, setTvDetails] = useState([])
 
 console.log(router);
 
 
 useEffect(()=>{
     setLoading(true)
-    fetchDataFromApi(`/movie/${router?.id}`).then((data)=>{
-        setMovieDetails(data)
+    fetchDataFromApi(`/movie/${router?.movieId}`).then((data)=>{
+        setTvDetails(data)
         console.log(data)
         setLoading(false)
     })
 
-},[router?.id])
+},[router?.movieId])
 
-console.log({...movieDetails})
+console.log({...tvDetails})
 
 if(loading) return 'Loading...'
   return (
     <div>page</div>
   )
 }
+
+
+

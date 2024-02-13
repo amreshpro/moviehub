@@ -6,11 +6,11 @@ type ImageTypes={
     src:string,
     alt:string,
     className:string,
-    width:number,
-    heigth:number,
+    width?:number,
+    heigth?:number,
 }
 
-export default function LazyImage({src,alt="image-poster",className,width,heigth}:ImageTypes) {
+export default function LazyImage({src,alt="image-poster",className}:ImageTypes) {
  
  const [imgSrc, setImgSrc] = useState(placeholderImage)
 
@@ -27,8 +27,7 @@ img.onload=()=>{
     src={imgSrc}
     alt={alt}
     className={className}
-    width={width}
-    height={heigth}
+ 
     />
   )
 }
