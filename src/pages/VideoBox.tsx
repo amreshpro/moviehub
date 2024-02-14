@@ -7,7 +7,6 @@ export default function VideoBox({videoKey,name}:{videoKey:string,name:string}) 
  
 
   const [isPopupShow, setIsPopupShow] = useState(false);
-
   return (
     <div className="video-container">
       <div className="video-box  w-60 h-60 ">
