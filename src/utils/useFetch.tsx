@@ -35,7 +35,6 @@ export const useFetch = (url: string) => {
 
     axios(options)
        .then((data) => {
-        console.log(data)
         setTotalPages(data?.data?.total_pages)
         setData(data?.data?.results);
         setLoading(false);
@@ -45,7 +44,6 @@ export const useFetch = (url: string) => {
         setLoading(false);
       });
   }, [page, url]);
-  console.log("page:"+page)
 
   return { data, loading, error, page, setPage,totalPages,setTotalPages };
 };

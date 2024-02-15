@@ -23,7 +23,6 @@ export default async function fetchDataFromApi(url:string, page = 1) {
             },
         };
         return await axios(options).then((data:any) => {
-            console.log(data);
             return data;
         });
     } catch (error) {
