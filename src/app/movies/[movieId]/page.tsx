@@ -2,6 +2,7 @@
 import CastProfile from "@/pages/CastProfile";
 import VideoBox from "@/pages/VideoBox";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
+import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -131,7 +132,9 @@ export default function DetailsOfTV() {
             {/* release date */}
             <span className="flex gap-2 ">
               <p className="">Release Date: </p>
-              <p className="text-gray-700"></p>
+              <p className="text-gray-700">
+                {dayjs(release_date).format("MMM D, YYYY")?? 'unknown'}
+              </p>
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
 
@@ -180,7 +183,7 @@ export default function DetailsOfTV() {
                     }
                   )
                   ?.map((c) => (c?.name ? c?.name : ""))
-                  .slice(0, 5) ?? "unknown"}
+                  .slice(0, 5) ?? 'unknown'}
               </p>
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
@@ -207,8 +210,6 @@ export default function DetailsOfTV() {
           {allMovieDetails?.videos
             .slice(0, 5)
             .map((video: { key: string; name: string }, i: number) => {
-            console.log(video)
-
                 return (
                 <VideoBox
                 {...video}
