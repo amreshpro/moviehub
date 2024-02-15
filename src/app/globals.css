@@ -59,11 +59,11 @@
 
   --dark-bg:var(--base-one);
   --dark-text:#0c2543;
-  --light-bg:#b0cece;
+  --light-bg:#c1defa;
   --light-text:var(--text-base1);
 
 --dark-nav-bg:#0b0d34;
---light-nav-bg:#a0cece;
+--light-nav-bg:#90b0fa;
 
 
 
@@ -71,7 +71,7 @@
 
 
 
-  --hero-light-bg:#5aa4ff;
+  --hero-light-bg:#0570f2;
   --hero-dark-bg:#010e1d;
   --hero-light-text:#fff;
   --hero-dark-text:#01030e;
