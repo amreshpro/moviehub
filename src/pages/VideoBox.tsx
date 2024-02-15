@@ -21,7 +21,7 @@ export default function VideoBox({videoKey,name}:{videoKey:string,name:string}) 
           />
 
           <button className="absolute top-10 right-24 ">
-            <FaPlay className="text-5xl text-[#e50914]" />
+            <FaPlay className="text-5xl text-[#24a5fc]" />
           </button>
         </div>
         <h1 className="px-1 ">{name}</h1>

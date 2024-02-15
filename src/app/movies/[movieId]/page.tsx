@@ -1,4 +1,5 @@
 "use client";
+import { MOVIE_GENRES } from "@/constants/GENRES";
 import CastProfile from "@/pages/CastProfile";
 import VideoBox from "@/pages/VideoBox";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
@@ -12,7 +13,7 @@ const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
 type MoviePropTypes = {
   poster_path?: string;
   title?: string;
-  genres?: string[];
+  genres?: { id: number; name: string }[];
   overview?: string;
   vote_average?: number;
   tagline?: string;
@@ -20,35 +21,33 @@ type MoviePropTypes = {
   status?: string;
   runtime?: number;
 };
+
 type CastPropType = {
   character: string;
   name: string;
   profile_path: string;
 };
 
-type MovieDetailsType={
-    movies:{},
-    credits:{
-        cast: [],
-        crew: [],
-    },
-    videos:[]
-}
-
+type MovieDetailsType = {
+  movies: {};
+  credits: {
+    cast: [];
+    crew: [];
+  };
+  videos: [];
+};
 
 export default function DetailsOfTV() {
   const router = useParams();
   const [loading, setLoading] = useState(false);
   const [allMovieDetails, setAlMovieDetails] = useState<MovieDetailsType>({
-    movies:{},
+    movies: {},
     credits: {
       cast: [],
       crew: [],
     },
     videos: [],
   });
-
-  console.log(router);
 
   useEffect(() => {
     setLoading(true);
@@ -87,7 +86,49 @@ export default function DetailsOfTV() {
     release_date,
     status,
     runtime,
-  }:MoviePropTypes  = allMovieDetails.movies;
+  }: MoviePropTypes = allMovieDetails.movies;
+
+
+
+  const WriterNameArray = [
+    ...new Set(
+      allMovieDetails.credits.crew
+        .filter(
+          (crew: {
+            known_for_department: string;
+            id: number;
+            name: string;
+          }) => {
+            console.log(crew);
+            if (crew.known_for_department == "Writing") return crew;
+          }
+        )
+        ?.map((c: { known_for_department: string; id: number; name: string }) =>
+          c?.name ? c?.name : ""
+        )
+        .slice(0, 5)
+    ),
+  ];
+
+  const DirectorNameArray = [
+    ...new Set(
+      allMovieDetails.credits.crew
+        .filter(
+          (crew: {
+            known_for_department: string;
+            id: number;
+            name: string;
+          }) => {
+            if (crew.known_for_department == "Directing") return crew;
+          }
+        )
+        ?.map((c: { known_for_department: string; id: number; name: string }) =>
+          c?.name ? c?.name : ""
+        )
+        .slice(0, 5)
+    ),
+  ];
+
   return (
     <div className="container mt-4 px-4 ">
       <div className="details flex justify-evenly gap-2 sm:flex-wrap w-full">
@@ -104,19 +145,20 @@ export default function DetailsOfTV() {
           {/* tagline */}
           <h2>{tagline}</h2>
           {/* genres */}
-          {/* <div className="mt-2 genres flex gap-2 flex-wrap">
-                {genres?.map((genre: { id: any; name: any; }) => {
-                    const { id, name } = genre;
-                    return (
-                        <h3
-                            className=" w-fit   bg-[#e50914]  text-white rounded-xl px-2 py-1"
-                            key={id}
-                        >
-                            {name}
-                        </h3>
-                    );
-                })}
-            </div> */}
+          <div className="mt-2 flex flex-wrap gap-4">
+            {genres?.map((_, i: number) => {
+              if (genres[i].id == MOVIE_GENRES[i].id) {
+                return (
+                  <p
+                    className="  text-sm bg-blue-700 text-white px-2 py-1 rounded-2xl"
+                    key={i}
+                  >
+                    {MOVIE_GENRES[i]?.name}
+                  </p>
+                );
+              }
+            })}
+          </div>
 
           <p className="mt-2">{overview}</p>
           {/* status */}
@@ -133,7 +175,7 @@ export default function DetailsOfTV() {
             <span className="flex gap-2 ">
               <p className="">Release Date: </p>
               <p className="text-gray-700">
-                {dayjs(release_date).format("MMM D, YYYY")?? 'unknown'}
+                {dayjs(release_date).format("MMM D, YYYY") ?? "unknown"}
               </p>
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
@@ -151,19 +193,9 @@ export default function DetailsOfTV() {
             <span className="flex gap-2 ">
               <p className="">Directors: </p>
               <p className="text-gray-700">
-                {allMovieDetails.credits.crew
-                  .map(
-                    (crew: {
-                      known_for_department: string;
-                      id: number;
-                      name: string;
-                    }) => {
-                      if (crew?.known_for_department == "Directing")
-                        return crew;
-                    }
-                  )
-                  ?.map((c) => (c?.name ? c?.name : ""))
-                  .slice(0, 5) ?? "unknown"}
+                {DirectorNameArray.map((name: string) => {
+                  return name;
+                }).join(", ")}
               </p>
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
@@ -172,18 +204,9 @@ export default function DetailsOfTV() {
             <span className="flex gap-2 ">
               <p className="">Writers: </p>
               <p className="text-gray-700">
-                {allMovieDetails.credits.crew
-                  .map(
-                    (crew: {
-                      known_for_department: string;
-                      id: number;
-                      name: string;
-                    }) => {
-                      if (crew?.known_for_department == "Writing") return crew;
-                    }
-                  )
-                  ?.map((c) => (c?.name ? c?.name : ""))
-                  .slice(0, 5) ?? 'unknown'}
+                {WriterNameArray.map((name: string) => {
+                  return name;
+                }).join(", ")}
               </p>
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
@@ -210,11 +233,11 @@ export default function DetailsOfTV() {
           {allMovieDetails?.videos
             .slice(0, 5)
             .map((video: { key: string; name: string }, i: number) => {
-                return (
+              return (
                 <VideoBox
-                {...video}
-                name={video.name}
-                videoKey={video.key}
+                  {...video}
+                  name={video.name}
+                  videoKey={video.key}
                   key={"videoboxmapkey" + i}
                 />
               );
