@@ -16,6 +16,8 @@ type MoviePropTypes = {
   title?: string;
   genres?: { id: number; name: string }[];
   overview?: string;
+  number_of_episodes?: number;
+  number_of_seasons?: number;
   vote_average?: number;
   tagline?: string;
   release_date?: string;
@@ -52,13 +54,13 @@ export default function DetailsOfTV() {
 
   useEffect(() => {
     setLoading(true);
-    fetchDataFromApi(`/movie/${router?.movieId}`).then((data) => {
+    fetchDataFromApi(`/tv/${router?.tvId}`).then((data) => {
       setAlMovieDetails((prev) => {
         return { ...prev, movies: data.data };
       });
       setLoading(false);
     });
-    fetchDataFromApi(`/movie/${router?.movieId}/credits`).then((data) => {
+    fetchDataFromApi(`/tv/${router?.tvId}/credits`).then((data) => {
       setAlMovieDetails((prev) => {
         prev.credits.cast = data.data.cast;
         prev.credits.crew = data.data.crew;
@@ -66,13 +68,13 @@ export default function DetailsOfTV() {
       });
       setLoading(false);
     });
-    fetchDataFromApi(`/movie/${router?.movieId}/videos`).then((data) => {
+    fetchDataFromApi(`/tv/${router?.tvId}/videos`).then((data) => {
       setAlMovieDetails((prev) => {
         return { ...prev, videos: data.data.results };
       });
       setLoading(false);
     });
-  }, [router?.movieId]);
+  }, [router?.tvId]);
 
   if (loading) return <Loading/>
 
@@ -82,6 +84,8 @@ export default function DetailsOfTV() {
     title,
     genres,
     overview,
+    number_of_episodes,
+    number_of_seasons,
     vote_average,
     tagline,
     release_date,
@@ -179,12 +183,17 @@ export default function DetailsOfTV() {
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
 
-            {/* runtime */}
+            {/* total season */}
             <span className="flex gap-2 ">
-              <p className="">Runtime: </p>
-              <p className="text-gray-700">
-                {Math.floor(runtime! / 60)}h {runtime! % 60}m
-              </p>
+              <p className="">Total Seasons: </p>
+              <p className="text-gray-700">{number_of_seasons}</p>
+            </span>
+            <hr className="w-full h-1 bg-[#e50914]" />
+
+            {/* total episode */}
+            <span className="flex gap-2 ">
+              <p className="">Total Episodes: </p>
+              <p className="text-gray-700">{number_of_episodes}</p>
             </span>
             <hr className="w-full h-1 bg-[#e50914]" />
 
@@ -200,15 +209,19 @@ export default function DetailsOfTV() {
             <hr className="w-full h-1 bg-[#e50914]" />
 
             {/* writer */}
-            <span className="flex gap-2 ">
-              <p className="">Writers: </p>
-              <p className="text-gray-700">
-                {WriterNameArray.map((name: string) => {
-                  return name;
-                }).join(", ")}
-              </p>
-            </span>
-            <hr className="w-full h-1 bg-[#e50914]" />
+
+            <div className="">
+              <span className="flex gap-2 ">
+                <p className="">Writers: </p>
+                <p className="text-gray-700">
+                  {WriterNameArray.map((name: string) => {
+                    console.log(name);
+                    return name ?? "unknown";
+                  })?.join(", ")}
+                </p>
+              </span>
+              <hr className="w-full h-1 bg-[#e50914]" />
+            </div>
           </div>
         </div>
       </div>

@@ -1,58 +1,60 @@
 "use client";
 
+import Loading from "@/pages/Loading";
 import MovieCard from "@/pages/MovieCard";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function SearchList() {
-const router = useParams<{query:string}>();
-console.log(router)
-const [searchText, setSearchText] = useState(router?.query);
-const [searchedData, setSearchedData] = useState([]);
-const [isLoading, setIsLoading] = useState(false);
+  const router = useParams<{ query: string }>();
+  console.log(router);
+  const [searchText, setSearchText] = useState(router?.query);
+  const [searchedData, setSearchedData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-const onSearchHandler = () => {
+  const onSearchHandler = () => {
     console.log(searchText);
-};
+  };
 
-useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
-        console.log('value: ' + searchText);
-        async function getSearchedData() {
-            setIsLoading(true);
-            const res = await fetchDataFromApi(
-                `/search/multi?query=${searchText}`,
-            );
-            setIsLoading(false);
-            return res.data;
-        }
+      console.log("value: " + searchText);
+      async function getSearchedData() {
+        setIsLoading(true);
+        const res = await fetchDataFromApi(`/search/multi?query=${searchText}`);
+        setIsLoading(false);
+        return res.data;
+      }
 
-        getSearchedData().then((res) => {
-            setSearchedData(res?.results);
-            console.log(res);
-        });
+      getSearchedData().then((res) => {
+        setSearchedData(res?.results);
+        console.log(res);
+      });
     }, 700);
 
     return () => clearTimeout(timer);
-}, [searchText]);
+  }, [searchText]);
 
- if(isLoading) return 'loading...'
- if(!router?.query) return <h1>Not found anything</h1>
- return (
+  if (isLoading) return <Loading/>
+  if (!router?.query) return <h1>Not found anything</h1>;
+  return (
     <div>
-{router?.query && <h1>You searched for &quot;{router?.query.split('%20').join(" ")}&quot;</h1>}
+      {router?.query && (
+        <h1>
+          You searched for &quot;{router?.query.split("%20").join(" ")}&quot;
+        </h1>
+      )}
 
-<div className="container flex flex-wrap gap-6 px-2 justify-center my-4 ">
-   {searchedData?.length==0 ?<h1 className="text-xl">No Results Found</h1> : searchedData?.map((movie: any) => {
-      return (
-        <MovieCard key={movie.id} {...movie}  />
-      );
-    })}
-  
-</div>
-
-
+      <div className="container flex flex-wrap gap-6 px-2 justify-center my-4 ">
+        {searchedData?.length == 0 ? (
+          <h1 className="text-xl">No Results Found</h1>
+        ) : (
+          searchedData?.map((movie: any) => {
+            return <MovieCard key={movie.id} {...movie} />;
+          })
+        )}
+      </div>
     </div>
-  )
+  );
 }

@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/pages/Loading";
 // import Carousel from "@/pages/Carousel";
 import MovieCard from "@/pages/MovieCard";
 import { useFetch } from "@/utils/useFetch";
@@ -10,7 +11,7 @@ export default function Movies() {
     useFetch("/discover/movie");
 
   console.log("totalpages:" + totalPages);
-  if (loading) return "Loading......";
+  if (loading) return <Loading/>;
   if (error) return "Error: " + error;
   return (
     <div>

@@ -1,4 +1,5 @@
 "use client";
+import Loading from "@/pages/Loading";
 import MovieCard from "@/pages/MovieCard";
 import { useFetch } from "@/utils/useFetch";
 import Link from "next/link";
@@ -10,7 +11,7 @@ export default function Movies() {
 
   console.log(loading);
   console.log(error);
-  if (loading) return "Loading......";
+  if (loading) return <Loading/>;
   if (error) return "Error: " + error;
   return (
     <div>
