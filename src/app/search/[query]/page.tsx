@@ -2,6 +2,7 @@
 
 import Loading from "@/pages/Loading";
 import MovieCard from "@/pages/MovieCard";
+import Shimmer from "@/pages/Shimmer";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -36,12 +37,12 @@ export default function SearchList() {
     return () => clearTimeout(timer);
   }, [searchText]);
 
-  if (isLoading) return <Loading/>
+  if (isLoading) return <Shimmer/>
   if (!router?.query) return <h1>Not found anything</h1>;
   return (
     <div>
       {router?.query && (
-        <h1>
+        <h1 className="mx-2 px-2 mt-5  text-lg">
           You searched for &quot;{router?.query.split("%20").join(" ")}&quot;
         </h1>
       )}

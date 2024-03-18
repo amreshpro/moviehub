@@ -17,20 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning={true}>
-          <body>
-            <main>
-
-      <ThemeProvider>
-        <ThemeWrapper>
-            <Navbar />
-            <div className="components pt-32">
-            {children}
-            </div>
-            <Footer />
-        </ThemeWrapper>
-      </ThemeProvider>
-            </main>
-          </body>
+      <body>
+        <main>
+          <ThemeProvider>
+            <ThemeWrapper>
+              <Navbar />
+              <div className="components pt-32">{children}</div>
+              <Footer />
+            </ThemeWrapper>
+          </ThemeProvider>
+        </main>
+      </body>
     </html>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
-import Loading from "@/pages/Loading";
 // import Carousel from "@/pages/Carousel";
 import MovieCard from "@/pages/MovieCard";
+import Shimmer from "@/pages/Shimmer";
 import { useFetch } from "@/utils/useFetch";
 import Link from "next/link";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -11,7 +11,7 @@ export default function Movies() {
     useFetch("/discover/movie");
 
   console.log("totalpages:" + totalPages);
-  if (loading) return <Loading/>;
+  if (loading) return <Shimmer/>;
   if (error) return "Error: " + error;
   return (
     <div>

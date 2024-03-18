@@ -1,6 +1,6 @@
 "use client";
-import Loading from "@/pages/Loading";
 import MovieCard from "@/pages/MovieCard";
+import Shimmer from "@/pages/Shimmer";
 import { useFetch } from "@/utils/useFetch";
 import Link from "next/link";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
@@ -11,7 +11,7 @@ export default function Movies() {
 
   console.log(loading);
   console.log(error);
-  if (loading) return <Loading/>;
+  if (loading) return <Shimmer/>;
   if (error) return "Error: " + error;
   return (
     <div>

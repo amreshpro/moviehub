@@ -20,7 +20,7 @@ export default function SearchPopup() {
         onKeyUp={onSearchHandler}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Search your movie... "
-        className="outline-none px-2 w-[50vw] h-14 text-black sm:h-8 md:w-[80vw] sm:w-[90vw] py-1 text-2xl sm:text-xl"
+        className="outline-none px-2 w-[30vw] h-10 bg-pink-100 text-black sm:h-8 md:w-[80vw] sm:w-[90vw] py-1 text-2xl sm:text-xl"
       />
       <Link
         href={`/search/${searchText ==''? '#':searchText}`}
