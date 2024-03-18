@@ -15,7 +15,8 @@ export default function Movies() {
   if (error) return "Error: " + error;
   return (
     <div>
-      Movies
+     <h1 className="mx-2 px-2 text-lg mt-5">Movies</h1>
+
       <div className="cards flex flex-wrap gap-4 px-2 justify-center my-4 ">
         {data?.map((movie: any) => {
           return (
