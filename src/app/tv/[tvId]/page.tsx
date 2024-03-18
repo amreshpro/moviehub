@@ -2,6 +2,7 @@
 import { MOVIE_GENRES } from "@/constants/GENRES";
 import CastProfile from "@/pages/CastProfile";
 import Loading from "@/pages/Loading";
+import Shimmer from "@/pages/Shimmer";
 import VideoBox from "@/pages/VideoBox";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
 import dayjs from "dayjs";
@@ -76,9 +77,9 @@ export default function DetailsOfTV() {
     });
   }, [router?.tvId]);
 
-  if (loading) return <Loading/>
+  if (loading) return <Shimmer/>
 
-  console.log(allMovieDetails);
+
   const {
     poster_path,
     title,
@@ -102,7 +103,6 @@ export default function DetailsOfTV() {
             id: number;
             name: string;
           }) => {
-            console.log(crew);
             if (crew.known_for_department == "Writing") return crew;
           }
         )

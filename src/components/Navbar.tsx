@@ -28,7 +28,6 @@ export default function Navbar() {
 
   const searchPopupHandler = () => {
     setIsSearchPopupOpen(!isSearchPopupOpen);
-    console.log("searcbox fun")
   };
 
   useEffect(() => {

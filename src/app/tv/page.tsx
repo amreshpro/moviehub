@@ -9,8 +9,7 @@ export default function Movies() {
   const { data, loading, error, page, setPage, totalPages } =
     useFetch("/discover/tv");
 
-  console.log(loading);
-  console.log(error);
+ 
   if (loading) return <Shimmer/>;
   if (error) return "Error: " + error;
   return (

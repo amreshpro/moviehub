@@ -7,7 +7,6 @@ import { useFetch } from "@/utils/useFetch";
 export default function Hero() {
   const { data, loading, error, page, setPage, totalPages } =
     useFetch("/trending/movie/day");
-console.log(data)
     if(loading) return <Shimmer/>
 
   return <div className="hero">

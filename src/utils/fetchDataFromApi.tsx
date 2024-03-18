@@ -27,5 +27,6 @@ export default async function fetchDataFromApi(url:string, page = 1) {
         });
     } catch (error) {
         console.log(error);
+        return error
     }
 }
