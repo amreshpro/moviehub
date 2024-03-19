@@ -24,8 +24,10 @@ export default function Shimmer() {
 
 const MovieSkelton = () => {
   return (
-    <div className="animate-pulse h-72 w-60  bg-gray-200 rounded-lg ">
-     
+    <div className="animate-pulse flex flex-col gap-2  ">
+     <div className="h-72 w-60  bg-gray-100 rounded-lg">
+     </div>
+     <div className="content w-60 bg-gray-200 rounded-lg"></div>
     </div>
   );
 };

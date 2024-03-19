@@ -42,7 +42,7 @@ export default function SearchList() {
   return (
     <div>
       {router?.query && (
-        <h1 className="mx-2 px-2 mt-5  text-lg">
+        <h1 className="mx-2 px-2 mt-5  text-lg font-bold">
           You searched for &quot;{router?.query.split("%20").join(" ")}&quot;
         </h1>
       )}

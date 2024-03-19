@@ -2,9 +2,9 @@ import { MOVIE_GENRES } from "@/constants/GENRES";
 import LazyImage from "./LazyImage";
 import Rating from "./Rating";
 import dayjs from "dayjs";
-import Image from "next/image";
 
-const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL
+
+const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
 
 type MovieCardPropType = {
   adult: boolean;
@@ -16,7 +16,7 @@ type MovieCardPropType = {
   genre_ids: number[];
   name: string;
   vote_average: number;
-}
+};
 
 export default function MovieCard(props: MovieCardPropType) {
   const {
@@ -45,10 +45,11 @@ export default function MovieCard(props: MovieCardPropType) {
         <p>{dayjs(release_date || first_air_date).format("MMM D, YYYY")}</p>
 
         <div className="rating absolute top-8 ">
-    {vote_average && <Rating rating={vote_average} />
-    }     
+          {vote_average && <Rating rating={vote_average} />}
         </div>
-<h1 className="absolute text-red-500 font-bold ">{adult ? "18+":''}</h1>
+        <h1 className="absolute text-red-500 font-bold ">
+          {adult ? "18+" : ""}
+        </h1>
 
         <div className="genres-list absolute top-8 right-2">
           {genre_ids?.map((_, i) => {
@@ -60,10 +61,10 @@ export default function MovieCard(props: MovieCardPropType) {
                 >
                   {MOVIE_GENRES[i]?.name}
                 </h2>
-              )
+              );
           })}
         </div>
       </div>
     </div>
-  )
+  );
 }

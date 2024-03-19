@@ -2,6 +2,7 @@
 import { MOVIE_GENRES } from "@/constants/GENRES";
 import CastProfile from "@/pages/CastProfile";
 import Loading from "@/pages/Loading";
+import Shimmer from "@/pages/Shimmer";
 import VideoBox from "@/pages/VideoBox";
 import fetchDataFromApi from "@/utils/fetchDataFromApi";
 import dayjs from "dayjs";
@@ -74,7 +75,7 @@ export default function DetailsOfTV() {
     });
   }, [router?.movieId]);
 
-  if (loading) return <Loading/>
+  if (loading) return <Shimmer/>
 
   console.log(allMovieDetails);
   const {
