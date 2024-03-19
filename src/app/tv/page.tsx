@@ -31,18 +31,18 @@ export default function Movies() {
               return prev > 1 ? prev - 1 : prev;
             })
           }
-          className="bg-[#0f101a] px-4 py-0.5"
+          className="bg-[#0f101a] text-white px-4 py-0.5"
         >
           <IoIosArrowBack />
         </button>
-        <p className="bg-[#0f101a] px-4 py-0.5">{page}</p>
+        <p className="bg-[#0f101a] text-white px-4 py-0.5">{page}</p>
         <button
           onClick={() =>
             setPage((prev: number) => {
               return totalPages > prev ? prev + 1 : prev;
             })
           }
-          className="bg-[#0f101a] px-4 py-0.5"
+          className="bg-[#0f101a] text-white px-4 py-0.5"
         >
           <IoIosArrowForward />
         </button>
