@@ -230,7 +230,7 @@ export default function DetailsOfTV() {
       {allMovieDetails?.videos.length > 0 && (
         <div className="related-videos mt-4">
           <h1 className="text-2xl mb-4 px-2 ">Movie Related Videos</h1>
-          <div className="official-videos flex justify-center sm:gap-2 gap-4 flex-wrap">
+          <div className="official-videos flex justify-start sm:gap-2 gap-4 flex-wrap">
             {allMovieDetails?.videos
               .slice(0, 5)
               .map((video: { key: string; name: string }, i: number) => {
