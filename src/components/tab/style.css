@@ -1,0 +1,17 @@
+.tab {
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  font-size: 25px;
+  padding: 5px;
+  background-color: aliceblue;
+}
+.tab button {
+  outline: none;
+  border: none;
+}
+
+.tab .active {
+  background: #ff5ae9;
+  color: white;
+}
